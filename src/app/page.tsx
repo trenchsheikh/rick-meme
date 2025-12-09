@@ -44,9 +44,9 @@ function MainContent() {
           <div className="flex flex-col items-center md:items-start gap-2 w-full">
             <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">Contract Address</span>
             <GlassyButton
-              text="CA: xxxxxxx"
-              className="w-full md:w-auto text-lg font-mono"
-            // onClick={() => navigator.clipboard.writeText("xxxxxxx")} 
+              text="CA: 9S8njQRsmwHjG5VzQ69RgCbtYN9WFaNjZCnLTygDpump"
+              className="w-full md:w-auto text-xs sm:text-sm md:text-base font-mono break-all normal-case px-4 py-3 md:px-8 md:py-4"
+              onClick={() => navigator.clipboard.writeText("9S8njQRsmwHjG5VzQ69RgCbtYN9WFaNjZCnLTygDpump")} 
             />
           </div>
 
