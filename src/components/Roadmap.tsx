@@ -38,7 +38,7 @@ const roadmapItems: RoadmapItem[] = [
 
 export default function Roadmap() {
   return (
-    <section id="roadmap" className="relative w-full py-20 md:py-32 px-4">
+    <section id="roadmap" className="relative z-10 w-full py-12 md:py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <motion.div
@@ -46,71 +46,60 @@ export default function Roadmap() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex flex-col items-center gap-4 text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter">
             ROADMAP
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 uppercase tracking-widest">
+          <p className="text-xl md:text-2xl font-medium text-gray-600 tracking-widest uppercase">
             Never Gonna Give You Up
           </p>
         </motion.div>
 
         {/* Roadmap Items */}
-        <div className="space-y-8 md:space-y-12">
+        <div className="space-y-6 md:space-y-8">
           {roadmapItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative"
+              className="w-full"
             >
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
-                {/* Phase Badge */}
-                <div className="flex-shrink-0">
-                  <div
-                    className={`px-6 py-3 rounded-full font-bold text-sm md:text-base tracking-wider ${
-                      item.status === "completed"
-                        ? "bg-green-500/20 text-green-700 border-2 border-green-500"
-                        : item.status === "in-progress"
-                        ? "bg-blue-500/20 text-blue-700 border-2 border-blue-500"
-                        : "bg-gray-500/20 text-gray-700 border-2 border-gray-500"
-                    }`}
-                  >
-                    {item.phase}
+              <div className="p-6 md:p-8 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+                  {/* Phase Badge */}
+                  <div className="flex-shrink-0">
+                    <div className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 font-bold text-sm md:text-base tracking-wider text-black">
+                      {item.phase}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl md:text-3xl font-black mb-2 text-black tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 text-base md:text-lg">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Status Indicator */}
+                  <div className="flex-shrink-0">
+                    <div
+                      className={`w-3 h-3 md:w-4 md:h-4 rounded-full ${
+                        item.status === "completed"
+                          ? "bg-black"
+                          : item.status === "in-progress"
+                          ? "bg-black animate-pulse"
+                          : "bg-gray-400"
+                      }`}
+                    />
                   </div>
                 </div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-black mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 text-base md:text-lg">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Status Indicator */}
-                <div className="flex-shrink-0">
-                  <div
-                    className={`w-4 h-4 rounded-full ${
-                      item.status === "completed"
-                        ? "bg-green-500"
-                        : item.status === "in-progress"
-                        ? "bg-blue-500 animate-pulse"
-                        : "bg-gray-300"
-                    }`}
-                  />
-                </div>
               </div>
-
-              {/* Connector Line (except last item) */}
-              {index < roadmapItems.length - 1 && (
-                <div className="hidden md:block absolute left-[60px] top-[60px] w-0.5 h-12 bg-gray-300" />
-              )}
             </motion.div>
           ))}
         </div>
