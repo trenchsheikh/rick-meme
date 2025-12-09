@@ -9,6 +9,7 @@ import SocialBar from "@/components/SocialBar";
 import EnterScreen from "@/components/EnterScreen";
 import FunTextCard from "@/components/FunTextCard";
 import Roadmap from "@/components/Roadmap";
+import MemeCTA from "@/components/MemeCTA";
 import { useMedia } from "@/components/MediaContext";
 
 function MainContent() {
@@ -84,6 +85,7 @@ function FullPageContent() {
     <>
       <MainContent />
       <Roadmap />
+      <MemeCTA />
     </>
   );
 }
