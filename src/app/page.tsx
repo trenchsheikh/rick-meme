@@ -8,7 +8,6 @@ import GlassyButton from "@/components/GlassyButton";
 import SocialBar from "@/components/SocialBar";
 import EnterScreen from "@/components/EnterScreen";
 import FunTextCard from "@/components/FunTextCard";
-import Roadmap from "@/components/Roadmap";
 import MemeCTA from "@/components/MemeCTA";
 import { useMedia } from "@/components/MediaContext";
 
@@ -54,15 +53,6 @@ function MainContent() {
           {/* Navigation Buttons */}
           <div className="flex flex-wrap justify-center md:justify-start gap-4 w-full">
             <GlassyButton text="How to Buy" />
-            <GlassyButton 
-              text="Roadmap" 
-              onClick={() => {
-                const roadmapSection = document.getElementById("roadmap");
-                if (roadmapSection) {
-                  roadmapSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-            />
           </div>
 
           {/* Socials */}
@@ -83,7 +73,6 @@ function FullPageContent() {
   return (
     <>
       <MainContent />
-      <Roadmap />
       <MemeCTA />
     </>
   );
