@@ -33,7 +33,7 @@ function MainContent() {
 
         {/* Left Column: Player */}
         <div className="flex justify-center md:justify-end">
-          <IOSPlayer videoUrl="/rick-roll.mp4?v=1" className="scale-90 md:scale-100" />
+          <IOSPlayer className="scale-90 md:scale-100" />
         </div>
 
         {/* Right Column: Actions & Info */}

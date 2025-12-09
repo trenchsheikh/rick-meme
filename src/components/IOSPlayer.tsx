@@ -1,27 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { useMedia } from "./MediaContext";
-import { motion } from "framer-motion";
+import React from "react";
 
 interface IOSPlayerProps {
-    videoUrl: string;
+    videoUrl?: string;
     className?: string;
 }
 
-export default function IOSPlayer({ videoUrl, className }: IOSPlayerProps) {
-    const { isPlaying, togglePlay } = useMedia();
-    const videoRef = useRef<HTMLVideoElement>(null);
-
-    useEffect(() => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.play().catch(() => { });
-            } else {
-                videoRef.current.pause();
-            }
-        }
-    }, [isPlaying]);
+export default function IOSPlayer({ className }: IOSPlayerProps) {
 
     return (
         <div className={`relative w-[300px] h-[600px] flex justify-center items-center ${className}`}>
@@ -36,33 +22,14 @@ export default function IOSPlayer({ videoUrl, className }: IOSPlayerProps) {
 
                 {/* Screen */}
                 <div className="w-full h-full bg-black rounded-[37px] overflow-hidden relative flex flex-col justify-center items-center">
-                    <video
-                        ref={videoRef}
-                        src={videoUrl}
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover"
-                        onClick={togglePlay}
+                    {/* YouTube Embed */}
+                    <iframe
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1&modestbranding=1&rel=0"
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{ border: 'none' }}
                     />
-
-                    {/* Play Button Overlay */}
-                    {!isPlaying && (
-                        <div
-                            className="absolute inset-0 flex justify-center items-center bg-black/10 cursor-pointer z-10"
-                            onClick={togglePlay}
-                        >
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                whileHover={{ scale: 1.1 }}
-                                className="w-[60px] h-[60px] rounded-full bg-white/80 backdrop-blur-md border border-white/30 flex justify-center items-center shadow-lg"
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="ml-1">
-                                    <polygon points="8,5 19,12 8,19" fill="#000" />
-                                </svg>
-                            </motion.div>
-                        </div>
-                    )}
                 </div>
 
                 {/* Home Bar */}
