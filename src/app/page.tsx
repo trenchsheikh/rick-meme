@@ -7,6 +7,7 @@ import MediaController from "@/components/MediaController";
 import GlassyButton from "@/components/GlassyButton";
 import SocialBar from "@/components/SocialBar";
 import EnterScreen from "@/components/EnterScreen";
+import FunTextCard from "@/components/FunTextCard";
 import { useMedia } from "@/components/MediaContext";
 
 function MainContent() {
@@ -59,10 +60,7 @@ function MainContent() {
             <SocialBar />
           </div>
 
-          <p className="max-w-md text-center md:text-left text-gray-500 text-sm leading-relaxed">
-            The most legendary meme in internet history, now immortalized on Solana.
-            Join the community and never let the chart down.
-          </p>
+          <FunTextCard />
 
         </div>
       </div>
