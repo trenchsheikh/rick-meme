@@ -8,6 +8,7 @@ import GlassyButton from "@/components/GlassyButton";
 import SocialBar from "@/components/SocialBar";
 import EnterScreen from "@/components/EnterScreen";
 import FunTextCard from "@/components/FunTextCard";
+import Roadmap from "@/components/Roadmap";
 import { useMedia } from "@/components/MediaContext";
 
 function MainContent() {
@@ -32,7 +33,7 @@ function MainContent() {
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-8">
 
         {/* Left Column: Player */}
-        <div className="flex justify-center md:justify-end">
+        <div className="flex justify-center md:justify-end md:-mt-16">
           <IOSPlayer className="scale-90 md:scale-100" />
         </div>
 
@@ -52,7 +53,15 @@ function MainContent() {
           {/* Navigation Buttons */}
           <div className="flex flex-wrap justify-center md:justify-start gap-4 w-full">
             <GlassyButton text="How to Buy" />
-            <GlassyButton text="Roadmap" />
+            <GlassyButton 
+              text="Roadmap" 
+              onClick={() => {
+                const roadmapSection = document.getElementById("roadmap");
+                if (roadmapSection) {
+                  roadmapSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            />
           </div>
 
           {/* Socials */}
@@ -70,6 +79,15 @@ function MainContent() {
   );
 }
 
+function FullPageContent() {
+  return (
+    <>
+      <MainContent />
+      <Roadmap />
+    </>
+  );
+}
+
 export default function Home() {
   const { hasEntered } = useMedia();
 
@@ -81,7 +99,7 @@ export default function Home() {
         {!hasEntered ? (
           <EnterScreen key="enter" />
         ) : (
-          <MainContent key="main" />
+          <FullPageContent key="main" />
         )}
       </AnimatePresence>
     </main>
