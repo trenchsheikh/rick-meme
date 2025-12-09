@@ -9,14 +9,7 @@ export const metadata: Metadata = {
   title: "Rick Roll on Sol",
   description: "Never gonna give you up",
   icons: {
-    icon: [
-      {
-        url: "/Music Video 80S GIF by Rick Astley.gif",
-        type: "image/gif",
-      },
-    ],
-    shortcut: "/Music Video 80S GIF by Rick Astley.gif",
-    apple: "/Music Video 80S GIF by Rick Astley.gif",
+    icon: "/rick-favicon.svg",
   },
 };
 
