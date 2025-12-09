@@ -52,7 +52,10 @@ function MainContent() {
 
           {/* Navigation Buttons */}
           <div className="flex flex-wrap justify-center md:justify-start gap-4 w-full">
-            <GlassyButton text="How to Buy" />
+            <GlassyButton 
+              text="How to Buy" 
+              href="https://pump.fun/9S8njQRsmwHjG5VzQ69RgCbtYN9WFaNjZCnLTygDpump"
+            />
           </div>
 
           {/* Socials */}
