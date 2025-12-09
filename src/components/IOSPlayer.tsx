@@ -1,13 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface IOSPlayerProps {
     videoUrl?: string;
     className?: string;
 }
 
+// All GIFs with the starting one first
+const gifs = [
+    "/Music Video 80S GIF by Rick Astley.gif",
+    "/Music Video Love GIF by Rick Astley (1).gif",
+    "/Music Video Love GIF by Rick Astley (2).gif",
+    "/Music Video Love GIF by Rick Astley (3).gif",
+    "/Dance Dancing GIF by bunny_is_moving.gif",
+    "/Rick Astley Dancing GIF.gif",
+    "/gif1.gif",
+    "/gif2.gif",
+    "/gif3.gif",
+];
+
+// Time each GIF is displayed (in milliseconds)
+const GIF_DISPLAY_DURATION = 3000;
+
 export default function IOSPlayer({ className }: IOSPlayerProps) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % gifs.length);
+        }, GIF_DISPLAY_DURATION);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className={`relative w-[300px] h-[600px] flex justify-center items-center ${className}`}>
@@ -22,14 +48,21 @@ export default function IOSPlayer({ className }: IOSPlayerProps) {
 
                 {/* Screen */}
                 <div className="w-full h-full bg-black rounded-[37px] overflow-hidden relative flex flex-col justify-center items-center">
-                    {/* YouTube Embed */}
-                    <iframe
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1&modestbranding=1&rel=0"
-                        className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{ border: 'none' }}
-                    />
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={currentIndex}
+                            src={gifs[currentIndex]}
+                            alt={`Rick Astley GIF ${currentIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.4, 0, 0.2, 1],
+                            }}
+                        />
+                    </AnimatePresence>
                 </div>
 
                 {/* Home Bar */}

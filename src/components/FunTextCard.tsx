@@ -42,11 +42,48 @@ export default function FunTextCard() {
                 </li>
             </ul>
 
-            <div className="mt-8 pt-4 border-t border-white/10">
-                <button className="flex items-center gap-2 text-sm font-bold underline decoration-2 underline-offset-4 hover:text-gray-600 transition-colors uppercase">
-                    <ArrowRight className="w-4 h-4" />
-                    Click for Airdrop...
-                </button>
+            {/* Roadmap Section */}
+            <div className="mt-8 pt-6 border-t border-white/20">
+                <h3 className="text-xl font-black mb-4 uppercase tracking-tight">
+                    🎵 The Rick Roll Roadmap 🎵
+                </h3>
+                <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                        <span className="text-2xl font-black text-yellow-300 shrink-0">1</span>
+                        <div>
+                            <p className="font-black text-sm uppercase">Never Gonna Give You Up</p>
+                            <p className="text-xs text-gray-700 mt-1">Launch & Initial Rick Roll - We're no strangers to crypto</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <span className="text-2xl font-black text-yellow-300 shrink-0">2</span>
+                        <div>
+                            <p className="font-black text-sm uppercase">Never Gonna Let You Down</p>
+                            <p className="text-xs text-gray-700 mt-1">Community Building - You know the rules, and so do we</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <span className="text-2xl font-black text-yellow-300 shrink-0">3</span>
+                        <div>
+                            <p className="font-black text-sm uppercase">Never Gonna Run Around</p>
+                            <p className="text-xs text-gray-700 mt-1">Exchange Listings - We've known each other for so long</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <span className="text-2xl font-black text-yellow-300 shrink-0">4</span>
+                        <div>
+                            <p className="font-black text-sm uppercase">Never Gonna Make You Cry</p>
+                            <p className="text-xs text-gray-700 mt-1">Partnerships & Collabs - Your heart's been aching but you're too shy to say it</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                        <span className="text-2xl font-black text-yellow-300 shrink-0">5</span>
+                        <div>
+                            <p className="font-black text-sm uppercase">Never Gonna Say Goodbye</p>
+                            <p className="text-xs text-gray-700 mt-1">Forever Rick Rolling - Inside we both know what's been going on</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </motion.div>
     );
