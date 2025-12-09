@@ -12,19 +12,20 @@ interface GlassyButtonProps {
 
 export default function GlassyButton({ text, onClick, href, className = "" }: GlassyButtonProps) {
     const [hovered, setHovered] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const anchorRef = useRef<HTMLAnchorElement>(null);
     const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-        if (!buttonRef.current) return;
-        const rect = buttonRef.current.getBoundingClientRect();
+        const currentRef = href ? anchorRef.current : buttonRef.current;
+        if (!currentRef) return;
+        const rect = currentRef.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
         setMouse({ x, y });
     };
 
     const commonProps = {
-        ref: buttonRef,
         onMouseEnter: () => setHovered(true),
         onMouseLeave: () => setHovered(false),
         onMouseMove: handleMouseMove,
@@ -41,6 +42,7 @@ export default function GlassyButton({ text, onClick, href, className = "" }: Gl
     if (href) {
         return (
             <motion.a
+                ref={anchorRef}
                 {...commonProps}
                 href={href}
                 target="_blank"
@@ -64,6 +66,7 @@ export default function GlassyButton({ text, onClick, href, className = "" }: Gl
 
     return (
         <motion.button
+            ref={buttonRef}
             {...commonProps}
             onClick={onClick}
         >
