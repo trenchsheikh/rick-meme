@@ -18,13 +18,34 @@ export function MediaProvider({ children }: { children: React.ReactNode }) {
     const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        // Initialize audio
-        audioRef.current = new Audio("/audio.mp4");
-        audioRef.current.loop = true;
+        // Initialize audio with proper settings for production
+        const audio = new Audio("/audio.mp4");
+        audio.loop = true;
+        audio.volume = 0.7; // Set a reasonable volume level
+        audio.preload = "auto"; // Preload the audio for better performance
+        
+        // Create named handlers for proper cleanup
+        const handleError = (e: Event) => {
+            console.error("Audio loading error:", e);
+        };
+
+        const handleCanPlay = () => {
+            console.log("Audio ready to play");
+        };
+        
+        // Handle audio loading errors
+        audio.addEventListener("error", handleError);
+
+        // Handle audio can play event
+        audio.addEventListener("canplaythrough", handleCanPlay);
+
+        audioRef.current = audio;
 
         return () => {
             if (audioRef.current) {
                 audioRef.current.pause();
+                audioRef.current.removeEventListener("error", handleError);
+                audioRef.current.removeEventListener("canplaythrough", handleCanPlay);
                 audioRef.current = null;
             }
         };
@@ -33,7 +54,26 @@ export function MediaProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (audioRef.current) {
             if (isPlaying) {
-                audioRef.current.play().catch((e) => console.error("Audio play failed:", e));
+                // Use a promise chain to handle autoplay policies
+                const playPromise = audioRef.current.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            console.log("Audio playing successfully");
+                        })
+                        .catch((error) => {
+                            console.error("Audio play failed (autoplay policy):", error);
+                            // Try to play again after a short delay
+                            setTimeout(() => {
+                                if (audioRef.current && isPlaying) {
+                                    audioRef.current.play().catch((e) => {
+                                        console.error("Retry audio play failed:", e);
+                                    });
+                                }
+                            }, 100);
+                        });
+                }
             } else {
                 audioRef.current.pause();
             }
