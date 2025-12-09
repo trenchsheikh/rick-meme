@@ -82,17 +82,17 @@ export default function Home() {
   const { hasEntered } = useMedia();
 
   return (
-    <main className="relative w-full bg-white text-black overflow-x-hidden">
+    <main className="relative w-full min-h-screen bg-white text-black overflow-x-hidden">
       <BackgroundGrid />
       
-      {/* Media Controller - Always visible at top */}
+      {/* Media Controller - Always visible */}
       {hasEntered && <MediaController />}
 
       <AnimatePresence mode="wait">
         {!hasEntered ? (
           <EnterScreen key="enter" />
         ) : (
-          <div className="flex flex-col items-center">
+          <div className="relative w-full flex flex-col items-center">
             <FullPageContent key="main" />
           </div>
         )}
