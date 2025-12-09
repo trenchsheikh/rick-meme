@@ -75,7 +75,6 @@ function MainContent() {
         </div>
       </div>
 
-      <MediaController />
     </motion.div>
   );
 }
@@ -96,6 +95,9 @@ export default function Home() {
   return (
     <main className="relative min-h-screen w-full bg-white text-black overflow-x-hidden flex flex-col items-center">
       <BackgroundGrid />
+      
+      {/* Media Controller - Always visible at top */}
+      {hasEntered && <MediaController />}
 
       <AnimatePresence mode="wait">
         {!hasEntered ? (
